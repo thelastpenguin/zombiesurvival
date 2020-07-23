@@ -303,3 +303,18 @@ end)
 if GM.BeatSetZombie == "default" then
 	GM.BeatSetZombie = GM.BeatSetZombieDefault
 end
+
+CreateClientConVar("zs_uiopacity_notifications", 255, true, false, "ui opacity for notifications area", 0, 255)
+CreateClientConVar("zs_uiopacity_game_state", 220, true, false, "ui opacity for game state area", 0, 255)
+CreateClientConVar("zs_uiopacity_health_area", 255, true, false, "ui opacity for health area", 0, 255)
+CreateClientConVar("zs_uiopacity_status_area", 255, true, false, "ui opacity for status area", 0, 255)
+CreateClientConVar("zs_uiopacity_xp_hud", 255, true, false, "ui opacity for xp hud", 0, 255)
+
+local PANEL = FindMetaTable("Panel")
+function PANEL:SetAlphaToConVar(cvarname, default)
+	local cvar = GetConVar(cvarname)
+	self:SetAlpha(cvar:GetInt())
+	cvars.AddChangeCallback(cvarname, function()
+		self:SetAlpha(cvar:GetInt())
+	end)
+end

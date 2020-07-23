@@ -1434,7 +1434,7 @@ function GM:CreateVGUI()
 	local screenscale = BetterScreenScale()
 	self.GameStatePanel = vgui.Create("ZSGameState")
 	self.GameStatePanel:SetTextFont("ZSHUDFontSmaller")
-	self.GameStatePanel:SetAlpha(220)
+	self.GameStatePanel:SetAlphaToConVar("zs_uiopacity_game_state")
 	self.GameStatePanel:SetSize(screenscale * 420, screenscale * 80)
 	self.GameStatePanel:ParentToHUD()
 
@@ -1447,6 +1447,7 @@ function GM:CreateVGUI()
 	end
 	self.TopNotificationHUD:InvalidateLayout()
 	self.TopNotificationHUD:ParentToHUD()
+	self.TopNotificationHUD:SetAlphaToConVar("zs_uiopacity_notifications")
 
 	self.CenterNotificationHUD = vgui.Create("DEXNotificationsList")
 	self.CenterNotificationHUD:SetAlign(CENTER)
@@ -1458,21 +1459,25 @@ function GM:CreateVGUI()
 	end
 	self.CenterNotificationHUD:InvalidateLayout()
 	self.CenterNotificationHUD:ParentToHUD()
+	self.CenterNotificationHUD:SetAlphaToConVar("zs_uiopacity_notifications")
 end
 
 function GM:CreateLateVGUI()
 	if not self.HealthHUD then
 		self.HealthHUD = vgui.Create("ZSHealthArea")
+		self.HealthHUD:SetAlphaToConVar("zs_uiopacity_health_area")
 	end
 
 	if not self.StatusHUD then
 		self.StatusHUD = vgui.Create("ZSStatusArea")
+		self.StatusHUD:SetAlphaToConVar("zs_uiopacity_status_area")
 	end
 
 	if not self.XPHUD then
 		self.XPHUD = vgui.Create("ZSExperienceHUD")
 		self.XPHUD:ParentToHUD()
 		self.XPHUD:InvalidateLayout()
+		self.XPHUD:SetAlphaToConVar("zs_uiopacity_xp_hud")
 	end
 end
 
