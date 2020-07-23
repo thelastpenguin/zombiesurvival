@@ -400,6 +400,23 @@ function MakepOptions()
 	slider:SizeToContents()
 	list:AddItem(slider)
 
+	local function addUiOpacityOption(convar, help)
+		slider = vgui.Create("DNumSlider", Window)
+		slider:SetDecimals(0)
+		slider:SetMinMax(0, 255)
+		slider:SetConVar(convar)
+		slider:SetText(help)
+		slider:SizeToContents()
+		list:AddItem(slider)
+	end
+	
+	addUiOpacityOption("zs_uiopacity_notifications", "UI Opacity for kill feed and notifications")
+	addUiOpacityOption("zs_uiopacity_game_state", "UI Opacity for game state info")
+	addUiOpacityOption("zs_uiopacity_health_area", "UI Opacity for health area")
+	addUiOpacityOption("zs_uiopacity_status_area", "UI Opacity for status area")
+	addUiOpacityOption("zs_uiopacity_xp_hud", "UI Opacity for XP HUD")
+
+
 	list:AddItem(EasyLabel(Window, "Crosshair primary color"))
 	local colpicker = vgui.Create("DColorMixer", Window)
 	colpicker:SetAlphaBar(true)
